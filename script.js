@@ -21,8 +21,10 @@ let weather = {
         document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900/?" + name + "')"
     },
 
-    search : function() {
-        this.fetchWeather(document.querySelector(".searchbar").value);
+    search: function() {
+        let city = document.querySelector(".searchbar").value.trim();
+        city = city.replace(/\s+/g, ' '); // Replace multiple spaces with a single space
+        this.fetchWeather(city);
     }
 };
 
@@ -30,8 +32,8 @@ document.querySelector(".search button").addEventListener("click", function() {
     weather.search();
 });
 
-document.querySelector(".searchbar").addEventListener("keyup", function(event){
-    if(event.key == "Enter"){
+document.querySelector(".searchbar").addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
         weather.search();
     }
 });
